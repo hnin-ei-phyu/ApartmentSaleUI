@@ -15,7 +15,7 @@ class Seller {
         if (token) headers["x-access-token"] = token
 
         console.log("API Route")
-        let result = await axios.post(this.root + "/register-seller", sellerObj, { headers })
+        let result = await axios.post(this.root + "/login-seller", sellerObj, { headers })
         return result
     }
 

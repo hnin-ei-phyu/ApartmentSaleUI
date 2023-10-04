@@ -60,11 +60,8 @@
                      </div>
                      <hr>
                       
-                     <v-card
-                     v-for="user in users"
-                     :key = 'user'
-                     >
-                            <v-card-title> {{ user.username }}</v-card-title>
+                     <v-card>
+                            <v-card-title > {{ username }} </v-card-title>
                         
 
                         <v-list-item>
@@ -170,6 +167,7 @@
     </div>
 </template>
 <script>
+// import Buyer from "../../api/buyer"
 export default {
     name    : "UserHome",
     data : function() {
@@ -182,11 +180,12 @@ export default {
                 href: '/',
                 }
         ],
-        users: [
-                { username: 'Mike',email: 'mike@gmail.com',address: 'Kamayut township, Hledan street no.2',},
-        ],
+       
 
       }
+    },
+    methods: {
+        
     }
 }
 </script>

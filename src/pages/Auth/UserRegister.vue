@@ -98,9 +98,28 @@
                                         outline
                                         hide-details
                                         label="Password"
-                                        type="password"
                                         class="mb-6"
-                                        v-model="password">
+                                        v-model="password"
+                                        prepend-inner-icon="lock"
+                                        :type               = "showPassword ? 'text' : 'password'"
+                                        
+                                        @click:append       = "showPassword = !showPassword"
+
+                            >
+                            </v-text-field>
+
+                            <v-text-field
+                                        outline
+                                        hide-details
+                                        label="Comfirm Password"
+                                        class="mb-6"
+                                        v-model="comfirmedPassword"
+                                        prepend-inner-icon="lock"
+                                        :type               = "showPassword ? 'text' : 'password'"
+                                        :append-icon       = "showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                                        @click:append       = "showPassword = !showPassword"
+
+                            >
                             </v-text-field>
 
 
@@ -183,6 +202,7 @@
             username: null,
             email: null,
             password: null,
+            showPassword: false,
             role: 1,
             loading : false,
             
