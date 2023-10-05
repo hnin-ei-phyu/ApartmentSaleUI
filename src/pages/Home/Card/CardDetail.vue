@@ -202,7 +202,7 @@
   
   <script>
   export default {
-     name: 'Detail',
+     name: 'AddCard',
      data () {
         return {
          

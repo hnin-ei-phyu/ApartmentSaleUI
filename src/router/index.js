@@ -8,8 +8,9 @@ import SellerLogin from "../pages/Auth/SellerLogin"
 import SellerRegister from "../pages/Auth/SellerRegister"
 import Home from "../pages/Home/Home"
 import UserHome from "../pages/Home/UserHome"
-import Detail from "../pages/Home/Detail"
+import Detail from "../pages/Home/Card/CardDetail"
 import SellerHome from "../pages/Home/SellerHome"
+import AddCard from "../pages/Home/Card/AddCard"
 
 
 Vue.use(VueRouter)
@@ -61,6 +62,11 @@ const routes = [
         path : "/detail",
         name : "detail",
         component : Detail,
+      },
+      {
+        path : "/addCard",
+        name : "addCard",
+        component : AddCard
       },
       {
         path: "/user-home",

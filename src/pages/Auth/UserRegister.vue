@@ -202,6 +202,7 @@
             username: null,
             email: null,
             password: null,
+            comfirmedPassword: null,
             showPassword: false,
             role: 1,
             loading : false,
@@ -230,6 +231,7 @@
                 username : this.username,
                 email : this.email,
                 password : this.password,
+                comfirmedPassword : this.comfirmedPassword,
                 role : this.role,
             }
             
