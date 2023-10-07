@@ -232,7 +232,7 @@
                             <v-tab
                             class="ms-12 d-flex" 
                             link
-                            :href="'/'"
+                            :href="'/addCard'"
                             >
                                 <div class="display">
                                     <div>

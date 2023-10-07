@@ -25,18 +25,12 @@
               <v-btn 
               outlined
               link
-              :href="'/buyer-login'"
+              :href="'/'"
               >
-                  Login <v-icon>login</v-icon>
+                  Logout <v-icon>login</v-icon>
               </v-btn>
   
-              <v-tab
-              link
-              :href="'/seller-login'"
-              >
-              Login as seller 
-              </v-tab>
-  
+            
               <v-menu
                   left
                   bottom
@@ -118,6 +112,29 @@
             </v-row>
           </v-form>
         </v-container>
+        
+      
+        <v-card-actions>
+
+
+        <v-spacer></v-spacer>
+
+        <v-btn large
+          class="ma-2"
+          color="blue lighten-2"
+          dark
+          link
+          :href="'/seller-home'"
+        >
+          <v-icon
+            dark
+            left
+          >
+            mdi-arrow-left
+          </v-icon>Back
+        </v-btn>
+        </v-card-actions>
+
     </div>
     <!--add card --> 
   
@@ -141,6 +158,7 @@
                     </v-icon>
                 </v-btn>
         </v-card-text> 
+
                   
         <v-divider></v-divider>
         <v-card-text class="white--text text-center">
