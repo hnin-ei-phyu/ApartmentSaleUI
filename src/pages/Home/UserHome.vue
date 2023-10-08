@@ -60,22 +60,19 @@
                      </div>
                      <hr>
                       
-                     <v-card
-                     v-for="user in users"
-                     :key = 'user'
-                     >
-                            <v-card-title> {{ user.username }}</v-card-title>
+                     <v-card>
+                            <v-card-title> {{ currentUser.username}}</v-card-title>
                         
 
                         <v-list-item>
                         <v-list-item-content>
-                            <v-list-item-title> Email : {{ user.email }}</v-list-item-title>
+                            <v-list-item-title> Email : </v-list-item-title>
                         </v-list-item-content>
                         </v-list-item>
 
                         <v-list-item>
                         <v-list-item-content>
-                            <v-list-item-title>Address : {{ user.address }}</v-list-item-title>
+                            <v-list-item-title>Address : </v-list-item-title>
                         </v-list-item-content>
                         </v-list-item>
 
@@ -182,12 +179,22 @@ export default {
                 href: '/',
                 }
         ],
-        users: [
-                { username: 'Mike',email: 'mike@gmail.com',address: 'Kamayut township, Hledan street no.2',},
-        ],
+        // users: [
+        //         { username: 'Mike',email: 'mike@gmail.com',address: 'Kamayut township, Hledan street no.2',},
+        // ],
 
       }
-    }
+    },
+    computed: {
+        // currently logged in user
+        currentUser: function () {
+            return this.$store.state.currentUser.user;
+        },
+        // current user's token
+        token: function () {
+            return this.$store.state.currentUser.token;
+        },
+    },
 }
 </script>
 <style>

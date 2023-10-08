@@ -205,23 +205,55 @@
     methods: {
         handleCreate : async function() {
             this.loading = true;
-            let buyer = new Buyer()
-            let buyerObj = {
-                username : this.username,
-                email : this.email,
-                password : this.password,
-                role : this.role,
-            }
+        
             
 
             try {
-                await buyer.registerBuyer(buyerObj)
+                let buyer = new Buyer()
+                let buyerObj = {
+                    username : this.username,
+                    email : this.email,
+                    password : this.password,
+                    role : this.role,
+                }
+                
+                let result = await buyer.registerBuyer(buyerObj)
+                let token = result.data.token 
                 this.$router.push("/user-home")
+  
+                console.log(token)
+                 /**
+                 * Save the auth token and currently loggined user to
+                 * global storage
+                 */
+                this.$store.commit("setUser", result.data);
+                this.$store.commit("setToken", result.data.token);
+
+                /*
+                 *save the auth token to brower's localstorage 
+                 to save the current user for next login*/
+
+                localStorage.setItem("token",token)
+                
+                
             } catch (error) {
                 console.log("Error : ",error)
             }
             this.loading = false;
+        },
+            saveCurrentAuth : function(user){
+            // save auth token to localstorage
+            localStorage.setItem("token",user.token)
+
+            // save the current auth to global store
+            this.$store.commit("setCurrentUser",user)
+
+            // continue to next page
+            setTimeout(()=>{
+                this.$router.push("/main")
+            },1000)
         }
+        
     },
     computed : {
         token : function() {

@@ -5,14 +5,17 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    currentUser : null
+    user: null,
+    token: null,
+    mqttclient: null
   },
   mutations: {
-    setCurrentUser : function (state, user) {
-      state.currentUser = user
+    setUser: function (state, user) {
+      state.user = user
+    },
+    setToken: function (state, token) {
+      state.token = token
     }
-  },
-  actions: {
   },
   modules: {
   }
