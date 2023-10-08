@@ -98,9 +98,28 @@
                                         outline
                                         hide-details
                                         label="Password"
-                                        type="password"
                                         class="mb-6"
-                                        v-model="password">
+                                        v-model="password"
+                                        prepend-inner-icon="lock"
+                                        :type               = "showPassword ? 'text' : 'password'"
+                                        
+                                        @click:append       = "showPassword = !showPassword"
+
+                            >
+                            </v-text-field>
+
+                            <v-text-field
+                                        outline
+                                        hide-details
+                                        label="Comfirm Password"
+                                        class="mb-6"
+                                        v-model="comfirmedPassword"
+                                        prepend-inner-icon="lock"
+                                        :type               = "showPassword ? 'text' : 'password'"
+                                        :append-icon       = "showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                                        @click:append       = "showPassword = !showPassword"
+
+                            >
                             </v-text-field>
 
 
@@ -183,6 +202,8 @@
             username: null,
             email: null,
             password: null,
+            comfirmedPassword: null,
+            showPassword: false,
             role: 1,
             loading : false,
             
@@ -205,7 +226,18 @@
     methods: {
         handleCreate : async function() {
             this.loading = true;
+<<<<<<< HEAD
         
+=======
+            let buyer = new Buyer()
+            let buyerObj = {
+                username : this.username,
+                email : this.email,
+                password : this.password,
+                comfirmedPassword : this.comfirmedPassword,
+                role : this.role,
+            }
+>>>>>>> 789cb8b72d86021cdc1a918fffa42b376e941903
             
 
             try {

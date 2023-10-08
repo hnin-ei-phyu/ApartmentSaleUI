@@ -73,7 +73,7 @@
             >
               <v-select
                 :items="items"
-                label="Standard"
+                label="Type"
                 outlined
               ></v-select>
             </v-col>
@@ -86,7 +86,7 @@
               <v-select
                 :items="items"
                 outlined
-                label="Filled style"
+                label="City"
               ></v-select>
             </v-col>
   
@@ -97,7 +97,7 @@
             >
               <v-select
                 :items="items"
-                label="township"
+                label="Rent Or Buy"
                 outlined
               ></v-select>
             </v-col>
@@ -109,7 +109,21 @@
             >
               <v-select
                 :items="items"
-                label="price"
+                label="Price From"
+                outlined
+              ></v-select>
+            </v-col>
+          </v-row>
+
+          <v-row align="center">
+            <v-col
+              class="d-flex"
+              cols="6"
+              sm="3"
+            >
+              <v-select
+                :items="items"
+                label="Price To"
                 outlined
               ></v-select>
             </v-col>

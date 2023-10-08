@@ -83,9 +83,25 @@
                             <v-text-field
                                         outline
                                         hide-details
+                                        class="mb-6"
                                         label="Password"
-                                        type="password"
-                                        v-model="password"></v-text-field>
+                                        v-model="password"
+                                        prepend-inner-icon="lock"
+                                        :type="showPassword ? 'text' : 'password'"
+                                        @click:append = "showPassword = ! showPassword"
+                            >
+                            </v-text-field>
+                            <v-text-field
+                                        outline
+                                        hide-details
+                                        label="comfirmedPassword"
+                                        v-model="comfirmedPassword"
+                                        prepend-inner-icon="lock"
+                                        :type="showPassword ? 'text' : 'password'"
+                                        :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                                        @click:append = "showPassword = ! showPassword"
+                            >
+                            </v-text-field>
                         
 
                         </v-form>
@@ -165,6 +181,8 @@
             username: null,
             email: null,
             password: null,
+            comfirmedPassword: null,
+            showPassword : false,
             role: 2,
 
             slides: [
@@ -198,6 +216,7 @@
                 username : this.username,
                 email : this.email,
                 password: this.password,
+                comfirmedPassword: this.comfirmedPassword,
                 role : this.role,
             }
             

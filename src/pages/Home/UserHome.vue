@@ -1,5 +1,5 @@
 <template>
-    <div class="user-home">
+    <div class="buyer">
           <v-app-bar
               color="blue-grey lighten-1"
               dark
@@ -61,7 +61,11 @@
                      <hr>
                       
                      <v-card>
+<<<<<<< HEAD
                             <v-card-title> {{ currentUser.username}}</v-card-title>
+=======
+                            <v-card-title > Name : {{buyer.username }} </v-card-title>
+>>>>>>> 789cb8b72d86021cdc1a918fffa42b376e941903
                         
 
                         <v-list-item>
@@ -84,6 +88,7 @@
                         >
                         <template v-slot:activator="{ on, attrs }">
                             <v-btn
+                            class="ma-6"
                             color="primary"
                             dark
                             v-bind="attrs"
@@ -167,11 +172,15 @@
     </div>
 </template>
 <script>
+import Buyer from "../../api/buyer"
 export default {
     name    : "UserHome",
     data : function() {
       return {
+        buyerId: this.$route.params.buyerId, // buyer document's Id
         dialog: false,
+        loading: false,
+        buyer: [],
         items: [
                 {
                 text: 'Home',
@@ -179,6 +188,7 @@ export default {
                 href: '/',
                 }
         ],
+<<<<<<< HEAD
         // users: [
         //         { username: 'Mike',email: 'mike@gmail.com',address: 'Kamayut township, Hledan street no.2',},
         // ],
@@ -195,6 +205,32 @@ export default {
             return this.$store.state.currentUser.token;
         },
     },
+=======
+       
+
+      }
+    },
+    methods: {
+        
+        loadBuyerInfo: async function (){
+            this.loading = true;
+            console.log("Methods is important!");
+            try {
+                let buyer = new Buyer(this.buyerId)
+                let result = await buyer.getInfo()
+                console.log(result.data)
+            } catch (error) {
+                console.log(error)
+            }
+            this.laoding = false;
+        }
+    },
+    computed : {
+        token : function() {
+            return this.$store.state.currentUser.token;
+        }
+    }
+>>>>>>> 789cb8b72d86021cdc1a918fffa42b376e941903
 }
 </script>
 <style>
