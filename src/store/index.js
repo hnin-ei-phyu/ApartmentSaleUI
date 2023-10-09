@@ -5,20 +5,23 @@ import createPersistedState from 'vuex-persistedstate'
 Vue.use(Vuex)
 
 /* eslint-disable no-new*/
+
 const store = new Vuex.Store({
   state: {
-    currentUser : null,
+    user: null,
     token: null,
     mqttclient: null
   },
   mutations: {
-    setCurrentUser : function (state, user) {
-      state.currentUser = user
+    setUser: function (state, user) {
+      state.user = user
+      console.log(user)
     },
-    SetToken: function (state, token) {
+    setToken: function (state, token) {
       state.token = token
+      console.log(token)
     },
-    setMqttClient: function (state, token) {
+    setMqttClient: function (state, client) {
       state.mqttclient = client
     }
   },

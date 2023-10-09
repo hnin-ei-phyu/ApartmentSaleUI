@@ -226,28 +226,44 @@
     methods: {
         handleCreate : async function() {
             this.loading = true;
-            let buyer = new Buyer()
-            let buyerObj = {
-                username : this.username,
-                email : this.email,
-                password : this.password,
-                comfirmedPassword : this.comfirmedPassword,
-                role : this.role,
-            }
+            
             
 
             try {
-                await buyer.registerBuyer(buyerObj)
+                let buyer = new Buyer()
+                let buyerObj = {
+                    username : this.username,
+                    email : this.email,
+                    password : this.password,
+                    comfirmedPassword : this.comfirmedPassword,
+                    role : this.role,
+                }
+                let buyerData = await buyer.registerBuyer(buyerObj)
+                let token = buyerData.data.token
+                // console.log(buyerData.data)
+                // console.log(buyerData.data.data.username)
+                // console.log(buyerData.data.token)
+
+                /**
+                * Save the auth token and currently loggined user to
+                * global storage
+                */
+                this.$store.commit("setUser", buyerData.data);
+                this.$store.commit("setToken", buyerData.data.token);
+
+                /**
+                 * Save the auth token to browser's localstorage to save
+                 * the current user for next logins
+                 */
+                localStorage.setItem("userToken", token);
+
+                // Continue to Home page
                 this.$router.push("/user-home")
+
             } catch (error) {
                 console.log("Error : ",error)
             }
             this.loading = false;
-        }
-    },
-    computed : {
-        token : function() {
-            return this.$store.state.currentUser.token;
         }
     }
 }

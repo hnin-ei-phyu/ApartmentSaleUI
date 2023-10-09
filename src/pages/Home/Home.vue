@@ -152,7 +152,7 @@
                   >
                     
                   </v-img>
-                  <v-card-title v-text="card.title"></v-card-title>
+                
                   <v-card-text mx="4">
                    Price : {{card.price}}
                   </v-card-text>
@@ -240,14 +240,14 @@
             },
           ],
           cards: [
-          { title: 'Pre-fab homes', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',price: '120000 per month',date:'8/9/2023' },
-          { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg' },
-          { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg' },
-          { title: 'Pre-fab homes', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg'},
-          { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg' },
-          { title: 'Pre-fab homes', src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg' },
-          { title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg'},
-          { title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg' },
+          {  src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',price: '120000 per month',date:'8/9/2023' },
+          {  src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg' },
+          {  src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg' },
+          {  src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg'},
+          {  src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg' },
+          {  src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg' },
+          {  src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg'},
+          {  src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg' },
           ],
           items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
           icons: [
@@ -258,6 +258,16 @@
         ],
         }
       },
+      // methods: {
+      //   loadItemInfo: async function() {
+      //     this.loading = true;
+      //     try {
+      //       let card = new 
+      //     } catch (error) {
+            
+      //     }
+      //   }
+      // }
     }
   
   

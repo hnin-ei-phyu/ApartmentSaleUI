@@ -12,11 +12,10 @@
   
               <v-tab
                   color="#dee6e6"
-                      v-for="item in items"
-                      :key="item"
-                      :href="item.href"
+                      link
+                      :href="'/'"
                   >
-                      {{ item.text }}
+                      Home
               </v-tab>
   
               <v-spacer></v-spacer>   
@@ -61,18 +60,18 @@
                      <hr>
                       
                      <v-card>
-                            <v-card-title > Name : {{buyer.username }} </v-card-title>
+                            <v-card-title > Name : {{ currentUser.username }} </v-card-title>
                         
 
                         <v-list-item>
                         <v-list-item-content>
-                            <v-list-item-title> Email : </v-list-item-title>
+                            <v-list-item-title> Email : {{ currentUser.email }} </v-list-item-title>
                         </v-list-item-content>
                         </v-list-item>
 
                         <v-list-item>
                         <v-list-item-content>
-                            <v-list-item-title>Address : </v-list-item-title>
+                            <v-list-item-title>Address : {{ currentUser.address }}</v-list-item-title>
                         </v-list-item-content>
                         </v-list-item>
 
@@ -98,14 +97,15 @@
                             <span class="text-h5">Update Profile</span>
                             </v-card-title>
                             <v-card-text>
+                            <form @submit.prevent="handleUpdate()">
                             <v-container>
                                 <v-row>
                                 <v-col
                                     cols="12"
                                 >
                                     <v-text-field
-                                    label="Full name*"
-
+                                    label="userName*"
+                                    :v-model="username"
                                     ></v-text-field>
                                 </v-col>
                                
@@ -113,27 +113,35 @@
                                     cols="12"
                                 >
                                     <v-text-field
-                                    label="Nick name*"
-
+                                    label="PhoneNumer*"
+                                    :v-model="phoneNumber"
                                     ></v-text-field>
                                 </v-col>
+
+                                <v-col cols="12">
+                                    <v-text-field
+                                    label="nrcNumber*"
+                                    :v-model="nrcNumber"                                 
+                                    ></v-text-field>
+                                </v-col>
+
                                 <v-col cols="12">
                                     <v-text-field
                                     label="Address*"
-                                    
+                                    :v-model="address"                                   
                                     ></v-text-field>
                                 </v-col>
+
                                 <v-col cols="12">
                                     <v-text-field
-                                    label="PhoneNumber*"
-                                    type="phoneNumber"
-                                    
+                                    label="Bio*"
+                                    :v-model="bio"                                   
                                     ></v-text-field>
                                 </v-col>
                                
                                 </v-row>
                             </v-container>
-      
+                            </form>
                             </v-card-text>
                             <v-card-actions>
                             <v-spacer></v-spacer>
@@ -147,7 +155,7 @@
                             <v-btn
                                 color="blue darken-1"
                                 text
-                                @click="dialog = false"
+                                @click="handleUpdate(), dialog = false"
                             >
                                 Save
                             </v-btn>
@@ -155,14 +163,12 @@
                         </v-card>
                         </v-dialog>
                     </v-card>
-                    
-
                  </div>
              </div>
          </div>
  
          </div>
-      </template>
+        </template>
           </v-container>
       </v-app>
     </div>
@@ -173,41 +179,81 @@ export default {
     name    : "UserHome",
     data : function() {
       return {
-        buyerId: this.$route.params.buyerId, // buyer document's Id
+        buyerId: this.$route.id, // buyer document's Id
         dialog: false,
         loading: false,
-        buyer: [],
-        items: [
-                {
-                text: 'Home',
-                disabled: false,
-                href: '/',
-                }
-        ],
-       
+        username : null,
+        password : null,
+        phoneNumber: null,
+        nrcNumber: null,
+        address: null,
+        bio: null,
+        role     : null,
+        success  : null,
 
       }
     },
     methods: {
-        
-        loadBuyerInfo: async function (){
-            this.loading = true;
-            console.log("Methods is important!");
-            try {
-                let buyer = new Buyer(this.buyerId)
-                let result = await buyer.getInfo()
-                console.log(result.data)
-            } catch (error) {
-                console.log(error)
+        handleUpdate: async function (){
+            console.log("I LOVE U !")
+            console.log(this.buyerId)
+           this.loading = true;
+            let buyer = new Buyer(this.buyerId);
+            let updateData = {
+                username : this.username,
+                address : this.address,
+                phoneNumber : this.phoneNumber,
+                nrcNumber : this.nrcNumber,
+                bio : this.bio
             }
-            this.laoding = false;
-        }
-    },
-    computed : {
-        token : function() {
-            return this.$store.state.currentUser.token;
-        }
+            console.log(updateData)
+            try {
+                await buyer.updateInfo(updateData,this.token);
+                this.success = true;
+                this.loading = false;
+                setTimeout(()=> {
+                    this.success = false;
+                }, 5000)
+            } catch (error) {
+                this.loading = false;
+                console.log("Error :",error)
+            }
+        },
+    
+   },
+   created: async function() {
+    this.loading = true;
+
+    try {
+        console.log("I'm lost again!")
+        let buyer = new Buyer(this.buyerId)
+        let result = await buyer.getInfo(this.token)
+        let data = result.data;
+
+        this.username = data.username
+        this.phoneNumber = data.phoneNumber
+        this.nrcNumber = data.nrcNumber
+        this.address = data.address
+        this.bio = data.bio
+        this.role = data.role
+
+        this.loading = false;
+    } catch (error) {
+        this.loading = false;
+        console.log("Error : ", error)
     }
+    
+   },
+   computed: {
+        // currently logged in user
+        currentUser: function () {
+            return this.$store.state.user.data;
+        },
+        // current user's token
+        token: function () {
+            return this.$store.state.token;
+        },
+    },
 }
 </script>
 <style>
