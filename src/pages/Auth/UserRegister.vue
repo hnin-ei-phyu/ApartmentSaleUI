@@ -226,7 +226,22 @@
     methods: {
         handleCreate : async function() {
             this.loading = true;
+<<<<<<< HEAD
             
+=======
+<<<<<<< HEAD
+        
+=======
+            let buyer = new Buyer()
+            let buyerObj = {
+                username : this.username,
+                email : this.email,
+                password : this.password,
+                comfirmedPassword : this.comfirmedPassword,
+                role : this.role,
+            }
+>>>>>>> 789cb8b72d86021cdc1a918fffa42b376e941903
+>>>>>>> 1bb755469fce9cd0a4c642db51eafa97f4a470b9
             
 
             try {
@@ -235,6 +250,7 @@
                     username : this.username,
                     email : this.email,
                     password : this.password,
+<<<<<<< HEAD
                     comfirmedPassword : this.comfirmedPassword,
                     role : this.role,
                 }
@@ -260,11 +276,56 @@
                 // Continue to Home page
                 this.$router.push("/user-home")
 
+=======
+                    role : this.role,
+                }
+                
+                let result = await buyer.registerBuyer(buyerObj)
+                let token = result.data.token 
+                this.$router.push("/user-home")
+  
+                console.log(token)
+                 /**
+                 * Save the auth token and currently loggined user to
+                 * global storage
+                 */
+                this.$store.commit("setUser", result.data);
+                this.$store.commit("setToken", result.data.token);
+
+                /*
+                 *save the auth token to brower's localstorage 
+                 to save the current user for next login*/
+
+                localStorage.setItem("token",token)
+                
+                
+>>>>>>> 1bb755469fce9cd0a4c642db51eafa97f4a470b9
             } catch (error) {
                 console.log("Error : ",error)
             }
             this.loading = false;
+        },
+            saveCurrentAuth : function(user){
+            // save auth token to localstorage
+            localStorage.setItem("token",user.token)
+
+            // save the current auth to global store
+            this.$store.commit("setCurrentUser",user)
+
+            // continue to next page
+            setTimeout(()=>{
+                this.$router.push("/main")
+            },1000)
         }
+<<<<<<< HEAD
+=======
+        
+    },
+    computed : {
+        token : function() {
+            return this.$store.state.currentUser.token;
+        }
+>>>>>>> 1bb755469fce9cd0a4c642db51eafa97f4a470b9
     }
 }
   </script>

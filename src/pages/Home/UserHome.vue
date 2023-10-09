@@ -60,7 +60,15 @@
                      <hr>
                       
                      <v-card>
+<<<<<<< HEAD
                             <v-card-title > Name : {{ currentUser.username }} </v-card-title>
+=======
+<<<<<<< HEAD
+                            <v-card-title> {{ currentUser.username}}</v-card-title>
+=======
+                            <v-card-title > Name : {{buyer.username }} </v-card-title>
+>>>>>>> 789cb8b72d86021cdc1a918fffa42b376e941903
+>>>>>>> 1bb755469fce9cd0a4c642db51eafa97f4a470b9
                         
 
                         <v-list-item>
@@ -182,6 +190,7 @@ export default {
         buyerId: this.$route.id, // buyer document's Id
         dialog: false,
         loading: false,
+<<<<<<< HEAD
         username : null,
         password : null,
         phoneNumber: null,
@@ -190,6 +199,35 @@ export default {
         bio: null,
         role     : null,
         success  : null,
+=======
+        buyer: [],
+        items: [
+                {
+                text: 'Home',
+                disabled: false,
+                href: '/',
+                }
+        ],
+<<<<<<< HEAD
+        // users: [
+        //         { username: 'Mike',email: 'mike@gmail.com',address: 'Kamayut township, Hledan street no.2',},
+        // ],
+
+      }
+    },
+    computed: {
+        // currently logged in user
+        currentUser: function () {
+            return this.$store.state.currentUser.user;
+        },
+        // current user's token
+        token: function () {
+            return this.$store.state.currentUser.token;
+        },
+    },
+=======
+       
+>>>>>>> 1bb755469fce9cd0a4c642db51eafa97f4a470b9
 
       }
     },
@@ -242,6 +280,7 @@ export default {
         this.loading = false;
         console.log("Error : ", error)
     }
+<<<<<<< HEAD
     
    },
    computed: {
@@ -254,6 +293,9 @@ export default {
             return this.$store.state.token;
         },
     },
+=======
+>>>>>>> 789cb8b72d86021cdc1a918fffa42b376e941903
+>>>>>>> 1bb755469fce9cd0a4c642db51eafa97f4a470b9
 }
 </script>
 <style>
