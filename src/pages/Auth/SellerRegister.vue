@@ -199,42 +199,50 @@
                 'mdi-linkedin',
                 'mdi-instagram',
             ],
-            items: [
-                {
-                text: 'Home',
-                disabled: false,
-                href: '/',
-                }
-            ],
+
         }
     },
     methods : {
         handleCreate : async function() {
             this.loading = true;
-            let seller = new Seller()
-            let sellerObj = {
-                username : this.username,
-                email : this.email,
-                password: this.password,
-                comfirmedPassword: this.comfirmedPassword,
-                role : this.role,
-            }
-            
+
             try {
-                await seller.registerSeller(sellerObj)
-                console.log("UserName :" , sellerObj.username)
+                let seller = new Seller()
+                let sellerObj = {
+                    username : this.username,
+                    email : this.email,
+                    password : this.password,
+                    comfirmedPassword : this.comfirmedPassword,
+                    role : this.role,
+                }
+                let sellerData = await seller.registerSeller(sellerObj)
+                let token = sellerData.data.token
+
+                /**
+                * Save the auth token and currently loggined user to
+                * global storage
+                */
+                this.$store.commit("setUser", sellerData.data);
+                this.$store.commit("setToken", sellerData.data.token);
+
+                /**
+                 * Save the auth token to browser's localstorage to save
+                 * the current user for next logins
+                 */
+                localStorage.setItem("userToken", token);
+
+                // Continue to Home page
                 this.$router.push("/seller-home")
+
+                
             } catch (error) {
                 console.log("Error : ",error)
             }
             this.loading = false;
-        }
-    },
-    computed : {
-        token : function() {
-            return this.$store.state.currentUser.token;
-        }
+        },
+           
     }
+    
 }
   </script>
   

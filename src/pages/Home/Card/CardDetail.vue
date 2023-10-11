@@ -133,15 +133,15 @@
 
             <v-card-actions>
 
-              <v-btn large color="green">
+              <!-- <v-btn large color="green">
                 <v-icon>phone</v-icon>Contact
-              </v-btn>
+              </v-btn> -->
 
               <v-spacer></v-spacer>
 
               <v-btn large
                 class="ma-2"
-                color="orange darken-2"
+                color="red lighten-2"
                 dark
                 link
                 :href="'/'"
@@ -202,7 +202,7 @@
   
   <script>
   export default {
-     name: 'AddCard',
+     name: 'CardDetail',
      data () {
         return {
          

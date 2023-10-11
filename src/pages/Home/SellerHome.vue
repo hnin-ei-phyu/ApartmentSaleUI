@@ -22,20 +22,14 @@
               <v-spacer></v-spacer>   
   
   
-              <v-btn 
-              outlined
-              link
-              :href="'/'"
-              >
-                  Logout<v-icon>login</v-icon>
-            </v-btn>
+            
           </v-app-bar>
         <!---nav bar-->
 
+        <HomeActionbutton />
+
       <v-app>
           <v-container fluid  
-          v-for="user in users"
-          :key="user"
           >
             <template>
           <div id="app">
@@ -131,9 +125,7 @@
                                 </v-dialog>
 
                             </div>
-                        </div>
-
-                        <v-card-title class="text-center"><h3>{{ user.username }} </h3> </v-card-title>     
+                        </div>   
 
                         
                     </div>
@@ -141,14 +133,12 @@
                     <div class="row justify-content-center" style="background-color: rgb(188, 214, 235); height: 500px;">
 
                         <v-card-text
-                        v-for="user in users"
-                        :key="user"
                         class="ms-12"
                         >
-                            <h3><p>Full Name : {{ user.fullName }}</p> </h3> 
-                            <h3><p>Email : {{ user.email }}</p> </h3>
-                            <h3><p>Phone Number : {{ user.phoneNumber }}</p> </h3>
-                            <h3><p>Address : {{ user.address }}</p> </h3>
+                            <h3><p>Name : {{ currentUser.username }}</p> </h3> 
+                            <h3><p>Email : {{ currentUser.email }}</p> </h3>
+                            <h3><p>Phone Number : {{ currentUser.phoneNumber }}</p> </h3>
+                            <h3><p>Address : {{ currentUser.address }}</p> </h3>
 
                         <v-dialog
                         v-model="dialog2"
@@ -232,7 +222,7 @@
                             <v-tab
                             class="ms-12 d-flex" 
                             link
-                            :href="'/addCard'"
+                            :href="'/add-card'"
                             >
                                 <div class="display">
                                     <div>
@@ -255,8 +245,12 @@
     </div>
 </template>
 <script>
+import HomeActionbutton from '../Actionbutton/HomeActionbutton.vue';
 export default {
     name    : "SellerHome",
+    components : {
+        HomeActionbutton,
+    },
     data : function() {
       return {
         dialog: false,
@@ -269,11 +263,18 @@ export default {
                 href: '/',
                 }
         ],
-        users: [
-                { fullName: 'Mike Masker',username: 'Mike',email: 'mike@gmail.com',phoneNumber: '09444142867',address: 'Kamayut township, Hledan street no.2',},
-        ],
-
+       
       }
+    },
+    computed: {
+        // currently logged in user
+        currentUser: function () {
+            return this.$store.state.user.data;
+        },
+        // current user's token
+        token: function () {
+            return this.$store.state.token;
+        },
     }
 }
 </script>

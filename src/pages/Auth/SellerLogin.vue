@@ -190,27 +190,51 @@
     methods: {
         handleCreate : async function() {
             this.loading = true;
-            let seller = new Seller() 
-            let sellerObj = {
-                email : this.email,
-                password : this.password
-            }
+            
 
             try {
                 // console.log(sellerObj)
-                await seller.sellerLogin(sellerObj)
-                
+                let seller = new Seller() 
+                let sellerObj = {
+                    email : this.email,
+                    password : this.password
+                }
+                let sellerData = await seller.sellerLogin(sellerObj)
+                let token = sellerData.data.token
+
+                /**
+                * Save the auth token and currently loggined user to
+                * global storage
+                */
+                this.$store.commit("setUser", sellerData.data);
+                this.$store.commit("setToken", sellerData.data.token);
+
+                /**
+                 * Save the auth token to browser's localstorage to save
+                 * the current user for next logins
+                 */
+                localStorage.setItem("userToken", token);
+
+                // Continue to Home page
                 this.$router.push("/seller-home")
+
+
+                
             } catch (error) {
                 console.log("Error :", error)
             }
             this.loadint = false;
         }
     },
-    computed : {
-        token : function() {
-            return this.$store.state.currentUser.token;
-        }
+    computed: {
+        // currently logged in user
+        currentUser: function () {
+            return this.$store.state.user.data;
+        },
+        // current user's token
+        token: function () {
+            return this.$store.state.token;
+        },
     }
 }
   </script>

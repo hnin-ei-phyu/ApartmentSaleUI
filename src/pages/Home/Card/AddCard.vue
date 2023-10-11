@@ -41,99 +41,120 @@
         <!---nav bar-->
   
 
-  <!--add card -->
-  <div style="background-color: rgb(212, 213, 219);">
-    <v-card-title>Create Advetisment Post</v-card-title>
-    <v-container>
-      <v-form outlined>
-        <v-row align="center">
-              <v-col 
-                class="d-flex"
-                cols="6"
-                sm="5"
-                >
-              RoomType</v-col>
-              <v-col
-                class="d-flex"
-                cols="6"
-                sm="5"
-              >
-                <v-select
-                  :items="items"
-                  label="Price To"
-                  outlined
-                ></v-select>
-              </v-col>
-            </v-row>
-            <v-row align="center">
-              <v-col 
-                class="d-flex"
-                cols="6"
-                sm="5">Price</v-col>
-              <v-col
-                class="d-flex"
-                cols="6"
-                sm="5"
-              >
-                <v-select
-                  :items="items"
-                  label="Price To"
-                  outlined
-                ></v-select>
-              </v-col>
-            </v-row>
+    <!--add card -->
+    <div style="background-color: rgb(212, 213, 219);">
+      <v-card-title>Create Advetisment Post</v-card-title>
+         
 
-            <v-row align="center">
-              <v-col 
-                class="d-flex"
-                cols="6"
-                sm="5">Address</v-col>
-              <v-col
-                class="d-flex"
-                cols="6"
-                sm="5"
-              >
-                <v-text-field label="Address"></v-text-field>
-              </v-col>
-            </v-row>
+        <v-container>
+          <v-row >
+            <v-col cols="12">
+              <v-card class="snow" height="800px">
+                <v-card-title class="dark--text subtitle-1 font-weight-bold">
+                  <v-btn
+                    depressed
+                    class="info mx-2"
+                    dark
+                    @click="() => this.$router.go(-1)"
+                  >
+                    <v-icon>keyboard_arrow_left</v-icon>
+                    back to SellerHome
+                  </v-btn>
+                  <v-spacer></v-spacer>
+                  <v-btn
+                    depressed
+                    class="success mx-2"
+                    dark
+                    :loading="loading"
+                    @click="handleCreate()"
+                  >
+                    <v-icon>save</v-icon>
+                    create data
+                  </v-btn>
+                </v-card-title>
+                <v-divider></v-divider>
+                <v-card-text class="mt-3 text-center">
+                  <v-row>
+                      <v-col
+                      class="d-flex"
+                      cols="6"
+                      sm="6"
+                      >
+                      <v-select
+                        :items="items"
+                        label="Item"
+                        v-model="item"
+                        outlined
+                      ></v-select>
+                    </v-col>
 
-            <v-row align="center">
-              <v-col 
-                class="d-flex"
-                cols="6"
-                sm="5">PhoneNumber</v-col>
-              <v-col
-                class="d-flex"
-                cols="6"
-                sm="5"
-              >
-                <v-text-field label="Phone"></v-text-field>
-              </v-col>
-            </v-row>
-          </v-form>
+                    <v-col cols="12" sm="6">
+                      <v-text-field
+                        filled
+                        outlined
+                        background-color="#fff"
+                        label="Price"
+                        color="primary darken-3"
+                        v-model="price"
+                      >
+                      </v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6">
+                      <v-text-field
+                        filled
+                        outlined
+                        background-color="#fff"
+                        label="Location"
+                        color="primary darken-3"
+                        v-model="location"
+                      >
+                      </v-text-field>
+                    </v-col>
+
+                    
+                    <v-col cols="12" sm="6">
+                      <v-text-field
+                        filled
+                        outlined
+                        background-color="#fff"
+                        label="Description"
+                        color="primary darken-3"
+                        v-model="description"
+                      >
+                      </v-text-field>
+                    </v-col>
+
+                    <v-col cols="12" sm="6">
+                      <v-text-field
+                        filled
+                        outlined
+                        background-color="#fff"
+                        label="Detail"
+                        color="primary darken-3"
+                        v-model="detail"
+                      >
+                      </v-text-field>
+                    </v-col>
+
+                    <v-col cols="12" sm="6">
+                      <v-text-field
+                        filled
+                        outlined
+                        background-color="#fff"
+                        label="Photo"
+                        color="primary darken-3"
+                        v-model="photo"
+                      >
+                      </v-text-field>
+                    </v-col>
+                  </v-row>
+                </v-card-text>
+              </v-card>
+            </v-col>
+          </v-row>
         </v-container>
-        
       
-        <v-card-actions>
-
-
-        <v-spacer></v-spacer>
-
-        <v-btn large
-          class="ma-2"
-          color="blue lighten-2"
-          dark
-          link
-          :href="'/seller-home'"
-        >
-          <v-icon
-            dark
-            left
-          >
-            mdi-arrow-left
-          </v-icon>Back
-        </v-btn>
-        </v-card-actions>
+      
 
     </div>
     <!--add card --> 
@@ -177,21 +198,47 @@
   
   
   <script>
+  import Merchandise from "../../../api/merchandise"
   export default {
-     name: 'CardDetail',
+     name: 'AddCard',
      data () {
         return {
-         
-          cards: [
-          { src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',roomType: 'Family room',location: 'Insein Township',title: 'Apartment',price: '120000 per month',date:'8/9/2023'},
-          ],
-          icons: [
-          'mdi-facebook',
-          'mdi-twitter',
-          'mdi-linkedin',
-          'mdi-instagram',
-          ],
-          items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+         loading : false,
+         item: null,
+         price: null,
+         location: null,
+         description: null,
+         photo: null,
+         detail:null,
+         owner: null,
+         items: ['Apartment','Girl Hostel','Boy Hostel','House'],
+        }
+        
+      },
+      methods : {
+        handleCreate : async function() {
+          this.loading = true;
+          
+
+          try {
+            let merchandise = new Merchandise()
+            let itemObj = {
+              item : this.item,
+              price : this.price,
+              location : this.location,
+              description : this.description,
+              photo: this.photo,
+              detail: this.detail,
+              owner: this.owner
+            }
+            let itemData = await merchandise.create(itemObj)
+            console.log(itemData)
+            this.$router.push("/seller-home")
+          } catch (error) {
+            console.log("Error : ", error)
+            this.$store.dispatch("MAKE_ERROR","Cannot create Admin .")
+          }
+          this.loading = false ;
         }
       },
     }

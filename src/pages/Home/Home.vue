@@ -96,8 +96,8 @@
               sm="3"
             >
               <v-select
-                :items="items"
-                label="Rent Or Buy"
+                :towns="town"
+                label="Township"
                 outlined
               ></v-select>
             </v-col>
@@ -108,7 +108,7 @@
               sm="3"
             >
               <v-select
-                :items="items"
+                :towns="items"
                 label="Price From"
                 outlined
               ></v-select>
@@ -122,7 +122,7 @@
               sm="3"
             >
               <v-select
-                :items="items"
+                :prices="prices"
                 label="Price To"
                 outlined
               ></v-select>
@@ -134,58 +134,7 @@
   <!--search box-->
       
   <!--items card -->
-      <v-container>
-            <v-row >
-              <v-col 
-                v-for="card in cards"
-                :key="card"
-                class="d-flex"
-                cols="6"
-                sm="3"
-              >
-                <v-card>
-                  <v-img
-                    :src="card.src"
-                    class="white--text align-end"
-                    gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                    height="auto"
-                  >
-                    
-                  </v-img>
-                
-                  <v-card-text mx="4">
-                   Price : {{card.price}}
-                  </v-card-text>
-                  <v-card-text mx="4">
-                   posted Date : {{ card.date }}
-                  </v-card-text>
-  
-                  <v-card-actions>
-  
-                    <v-btn 
-                      color="#ffff00"
-                      link
-                      :href="'/detail'"
-                    >
-                      detail<v-icon>list</v-icon>
-
-                    </v-btn>
-  
-                    <v-btn icon x-large color="green">
-                      <v-icon>phone</v-icon>
-                    </v-btn>
-  
-                     <v-spacer></v-spacer>
-  
-                    <v-btn icon>
-                      <v-icon>mdi-bookmark</v-icon>
-                    </v-btn>
-  
-                  </v-card-actions>
-                </v-card>
-              </v-col>
-            </v-row>
-      </v-container>
+    <CardGroup />
     <!--items card --> 
   
     <!--footer-->
@@ -226,8 +175,12 @@
   
   
   <script>
+  import CardGroup from './Card/CardGroup.vue';
   export default {
      name: 'Home',
+     components: {
+          CardGroup,
+     },
      data () {
         return {
          
@@ -239,17 +192,8 @@
               src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
             },
           ],
-          cards: [
-          {  src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',price: '120000 per month',date:'8/9/2023' },
-          {  src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg' },
-          {  src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg' },
-          {  src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg'},
-          {  src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg' },
-          {  src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg' },
-          {  src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg'},
-          {  src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg' },
-          ],
-          items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+          items: ['Apartment','Girl Hostel','Boy Hostel','House'],
+          prices: ['200000','300000','400000','500000'],
           icons: [
           'mdi-facebook',
           'mdi-twitter',

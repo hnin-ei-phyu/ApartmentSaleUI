@@ -18,80 +18,131 @@
                       Home
               </v-tab>
   
-              <v-spacer></v-spacer>   
-  
-  
-              <v-btn 
-              outlined
-              link
-              :href="'/'"
-              >
-                  Logout<v-icon>login</v-icon>
-            </v-btn>
+            
           </v-app-bar>
         <!---nav bar-->
 
-      <v-app>
-          <v-container fluid >
+        <HomeActionbutton />
+
+        <v-app>
+          <v-container fluid>
             <template>
           <div id="app">
          
-         <div class="container bg-light">
-             <div class="row">
-                 <div class="col-lg-5" style="background-color: rgb(188, 214, 235); height: 700px;">
-                       <div class="text-center mb-3">
-                         <img src="../../assets/man.png" alt="img-fluid" class="rounded-circle" style="width: 300px;">
-                       </div>
-                       <div class="d-flex justify-content-center">
-                          <v-btn class="info">
-                          update photo
-                          </v-btn>
-                           <v-spacer></v-spacer>
-                          <v-btn class="info">
-                          update password
-                          </v-btn>
-                      </div>
-                      
-                 </div>
-                 <div class="col-lg-7" style="background-color: rgb(186, 200, 201);">
-                     <div>
-                         <h1>Profile </h1>
-                     </div>
-                     <hr>
-                      
-                     <v-card>
-<<<<<<< HEAD
-                            <v-card-title > Name : {{ currentUser.username }} </v-card-title>
-=======
-<<<<<<< HEAD
-                            <v-card-title> {{ currentUser.username}}</v-card-title>
-=======
-                            <v-card-title > Name : {{buyer.username }} </v-card-title>
->>>>>>> 789cb8b72d86021cdc1a918fffa42b376e941903
->>>>>>> 1bb755469fce9cd0a4c642db51eafa97f4a470b9
+                <div class="container bg-light">
+                    <div class="row justify-content-center" style="background-color: rgb(212, 213, 219);">
+
+                        <div class="col-lg-4 my-3 ms-12">
+                            <img src="../../assets/man.png" alt="img-fluid" class="rounded-circle" style="width: 300px;">
+
+                            <div class="d-flex justify-content-center">
+                                
+                                <v-dialog
+                                v-model="dialog"
+                                persistent
+                                max-width="290"
+                                >
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-btn
+                                        color="primary"
+                                        dark
+                                        v-bind="attrs"
+                                        v-on="on"
+                                        >
+                                        Update Photo
+                                        </v-btn>
+                                    </template>
+                                    <v-card>
+                                        <v-card-title class="text-h5">
+                                        Update Photo
+                                        </v-card-title>
+                                        <v-card-text>Are You Sure to Update?</v-card-text>
+                                        <v-card-actions>
+                                        <v-spacer></v-spacer>
+                                        <v-btn
+                                            color="green darken-1"
+                                            text
+                                            @click="dialog = false"
+                                        >
+                                            Cancle
+                                        </v-btn>
+                                        <v-btn
+                                            color="green darken-1"
+                                            text
+                                            @click="dialog = false"
+                                        >
+                                            Save
+                                        </v-btn>
+                                        </v-card-actions>
+                                    </v-card>
+                                </v-dialog>
+
+                                <v-spacer></v-spacer>
+                                
+                                <v-dialog
+                                v-model="dialog1"
+                                persistent
+                                max-width="400"
+                                >
+                                    <template v-slot:activator="{ on, attrs }">
+                                        <v-btn
+                                        color="primary"
+                                        dark
+                                        v-bind="attrs"
+                                        v-on="on"
+                                        >
+                                        Update Password
+                                        </v-btn>
+                                    </template>
+                                    <v-card>
+                                        <v-card-title class="text-h5">
+                                        Update Password
+                                        </v-card-title>
+                                        <v-card-text>Are You Ready to Update?</v-card-text>
+                                        <v-card-actions>
+                                        <v-spacer></v-spacer>
+                                        <v-btn
+                                            color="green darken-1"
+                                            text
+                                            @click="dialog1 = false"
+                                        >
+                                            Cancle
+                                        </v-btn>
+                                        <v-btn
+                                            color="green darken-1"
+                                            text
+                                            @click="dialog1 = false"
+                                        >
+                                            Save
+                                        </v-btn>
+                                        </v-card-actions>
+                                    </v-card>
+                                </v-dialog>
+
+                            </div>
+                        </div>   
+
                         
+                    </div>
 
-                        <v-list-item>
-                        <v-list-item-content>
-                            <v-list-item-title> Email : {{ currentUser.email }} </v-list-item-title>
-                        </v-list-item-content>
-                        </v-list-item>
+                    <div class="row justify-content-center" style="background-color: rgb(188, 214, 235); height: 500px;">
 
-                        <v-list-item>
-                        <v-list-item-content>
-                            <v-list-item-title>Address : {{ currentUser.address }}</v-list-item-title>
-                        </v-list-item-content>
-                        </v-list-item>
+                        <v-card-text
+                            class="ms-12"
+                        >
+                            <h3><p>Name : {{ currentUser.username }}</p> </h3> 
+                            <h3><p>Email : {{ currentUser.email }}</p> </h3>
+                            <h3><p>Phone Number : {{ currentUser.phoneNumber }}</p> </h3>
+                            <h3><p>Address : {{ currentUser.address }}</p> </h3>
 
                         <v-dialog
-                        v-model="dialog"
+                        v-model="dialog2"
                         persistent
                         max-width="600px"
                         class="ms-12"
                         >
                         <template v-slot:activator="{ on, attrs }">
                             <v-btn
-                            class="ma-6"
                             color="primary"
                             dark
                             v-bind="attrs"
@@ -105,15 +156,14 @@
                             <span class="text-h5">Update Profile</span>
                             </v-card-title>
                             <v-card-text>
-                            <form @submit.prevent="handleUpdate()">
                             <v-container>
                                 <v-row>
                                 <v-col
                                     cols="12"
                                 >
                                     <v-text-field
-                                    label="userName*"
-                                    :v-model="username"
+                                    label="Name*"
+
                                     ></v-text-field>
                                 </v-col>
                                
@@ -121,76 +171,75 @@
                                     cols="12"
                                 >
                                     <v-text-field
-                                    label="PhoneNumer*"
-                                    :v-model="phoneNumber"
+                                    label="PhoneNumber*"
+
                                     ></v-text-field>
                                 </v-col>
-
                                 <v-col cols="12">
                                     <v-text-field
                                     label="nrcNumber*"
-                                    :v-model="nrcNumber"                                 
+                                    
                                     ></v-text-field>
                                 </v-col>
-
                                 <v-col cols="12">
                                     <v-text-field
                                     label="Address*"
-                                    :v-model="address"                                   
+                                    
                                     ></v-text-field>
-                                </v-col>
-
-                                <v-col cols="12">
-                                    <v-text-field
-                                    label="Bio*"
-                                    :v-model="bio"                                   
-                                    ></v-text-field>
-                                </v-col>
+                                </v-col>                              
                                
                                 </v-row>
                             </v-container>
-                            </form>
+      
                             </v-card-text>
                             <v-card-actions>
                             <v-spacer></v-spacer>
                             <v-btn
                                 color="blue darken-1"
                                 text
-                                @click="dialog = false"
+                                @click="dialog2 = false"
                             >
                                 Close
                             </v-btn>
                             <v-btn
                                 color="blue darken-1"
                                 text
-                                @click="handleUpdate(), dialog = false"
+                                @click="dialog2 = false"
                             >
                                 Save
                             </v-btn>
                             </v-card-actions>
                         </v-card>
                         </v-dialog>
-                    </v-card>
-                 </div>
-             </div>
+                        </v-card-text>
+
+                    </div>
+                </div>
          </div>
  
-         </div>
-        </template>
+      </template>
           </v-container>
       </v-app>
+
+      
+     
     </div>
 </template>
 <script>
-import Buyer from "../../api/buyer"
+// import Buyer from "../../api/buyer"
+import HomeActionbutton from '../Actionbutton/HomeActionbutton.vue';
 export default {
     name    : "UserHome",
+    components: {
+        HomeActionbutton,
+    },
     data : function() {
       return {
         buyerId: this.$route.id, // buyer document's Id
         dialog: false,
+        dialog1: false,
+        dialog2: false,
         loading: false,
-<<<<<<< HEAD
         username : null,
         password : null,
         phoneNumber: null,
@@ -199,7 +248,6 @@ export default {
         bio: null,
         role     : null,
         success  : null,
-=======
         buyer: [],
         items: [
                 {
@@ -208,81 +256,59 @@ export default {
                 href: '/',
                 }
         ],
-<<<<<<< HEAD
-        // users: [
-        //         { username: 'Mike',email: 'mike@gmail.com',address: 'Kamayut township, Hledan street no.2',},
-        // ],
-
       }
     },
-    computed: {
-        // currently logged in user
-        currentUser: function () {
-            return this.$store.state.currentUser.user;
-        },
-        // current user's token
-        token: function () {
-            return this.$store.state.currentUser.token;
-        },
-    },
-=======
-       
->>>>>>> 1bb755469fce9cd0a4c642db51eafa97f4a470b9
-
-      }
-    },
-    methods: {
-        handleUpdate: async function (){
-            console.log("I LOVE U !")
-            console.log(this.buyerId)
-           this.loading = true;
-            let buyer = new Buyer(this.buyerId);
-            let updateData = {
-                username : this.username,
-                address : this.address,
-                phoneNumber : this.phoneNumber,
-                nrcNumber : this.nrcNumber,
-                bio : this.bio
-            }
-            console.log(updateData)
-            try {
-                await buyer.updateInfo(updateData,this.token);
-                this.success = true;
-                this.loading = false;
-                setTimeout(()=> {
-                    this.success = false;
-                }, 5000)
-            } catch (error) {
-                this.loading = false;
-                console.log("Error :",error)
-            }
-        },
+//     methods: {
+//         handleUpdate: async function (){
+//             console.log("I LOVE U !")
+//             console.log(this.buyerId)
+//            this.loading = true;
+//             let buyer = new Buyer(this.buyerId);
+//             let updateData = {
+//                 username : this.username,
+//                 address : this.address,
+//                 phoneNumber : this.phoneNumber,
+//                 nrcNumber : this.nrcNumber,
+//                 bio : this.bio
+//             }
+//             console.log(updateData)
+//             try {
+//                 await buyer.updateInfo(updateData,this.token);
+//                 this.success = true;
+//                 this.loading = false;
+//                 setTimeout(()=> {
+//                     this.success = false;
+//                 }, 5000)
+//             } catch (error) {
+//                 this.loading = false;
+//                 console.log("Error :",error)
+//             }
+//         },
     
-   },
-   created: async function() {
-    this.loading = true;
+//    },
+//    created: async function() {
+//     this.loading = true;
 
-    try {
-        console.log("I'm lost again!")
-        let buyer = new Buyer(this.buyerId)
-        let result = await buyer.getInfo(this.token)
-        let data = result.data;
+//     try {
+//         console.log("I'm lost again!")
+//         let buyer = new Buyer(this.buyerId)
+//         let result = await buyer.getInfo(this.token)
+//         let data = result.data;
 
-        this.username = data.username
-        this.phoneNumber = data.phoneNumber
-        this.nrcNumber = data.nrcNumber
-        this.address = data.address
-        this.bio = data.bio
-        this.role = data.role
+//         this.username = data.username
+//         this.phoneNumber = data.phoneNumber
+//         this.nrcNumber = data.nrcNumber
+//         this.address = data.address
+//         this.bio = data.bio
+//         this.role = data.role
 
-        this.loading = false;
-    } catch (error) {
-        this.loading = false;
-        console.log("Error : ", error)
-    }
-<<<<<<< HEAD
+//         this.loading = false;
+//     } catch (error) {
+//         this.loading = false;
+//         console.log("Error : ", error)
+//     }
     
-   },
+//    },
    computed: {
         // currently logged in user
         currentUser: function () {
@@ -292,10 +318,7 @@ export default {
         token: function () {
             return this.$store.state.token;
         },
-    },
-=======
->>>>>>> 789cb8b72d86021cdc1a918fffa42b376e941903
->>>>>>> 1bb755469fce9cd0a4c642db51eafa97f4a470b9
+    }
 }
 </script>
 <style>

@@ -10,12 +10,10 @@ import Home from "../pages/Home/Home"
 import UserHome from "../pages/Home/UserHome"
 import Detail from "../pages/Home/Card/CardDetail"
 import SellerHome from "../pages/Home/SellerHome"
-<<<<<<< HEAD
-// import store from "../store/index"
-// import Auth from '../api/auth'
-=======
+import CardGroup from "../pages/Home/Card/CardGroup"
+import CardDetail from "../pages/Home/Card/CardDetail"
 import AddCard from "../pages/Home/Card/AddCard"
->>>>>>> 789cb8b72d86021cdc1a918fffa42b376e941903
+// import AddCard from "../pages/Home/Card/AddCard"
 
 
 Vue.use(VueRouter)
@@ -37,7 +35,6 @@ const routes = [
         ],
       },
       {
-<<<<<<< HEAD
         path: '/main',
         name: 'Main',
         component : MainView,
@@ -81,68 +78,29 @@ const routes = [
             name: "SellerHome",
             component: SellerHome,
           },
+          {
+            path: "/card-group",
+            name: "CardGroup",
+            component: CardGroup,
+          },
+          {
+            path: "/add-card",
+            name: "AddCard",
+            component: AddCard,
+          },
+          {
+            path: "/card-detail",
+            name: "CardDetail",
+            component: CardDetail,
+          },
         ]
       }
-];
-=======
-        path : "/buyer-register",
-        name : "Buyer Regisger",
-        component : UserRegister,
-
-      },
-      {
-        path: "/seller-login",
-        name: "Seller Login",
-        component : SellerLogin,
-      },
-      {
-        path : "/seller-register",
-        name : "Seller Register",
-        component : SellerRegister,
-      },
-    ],
-  },
-  {
-    path: '/',
-    name: 'Main',
-    component: MainView,
-    redirect: '/home',
-    children: [
-      {
-        path : "/home",
-        name : "Home",
-        component : Home,
-      },
-      {
-        path : "/detail",
-        name : "detail",
-        component : Detail,
-      },
-      {
-        path : "/addCard",
-        name : "addCard",
-        component : AddCard
-      },
-      {
-        path: "/user-home",
-        name: "UserHome",
-        component: UserHome
-      },
-      {
-        path: "/seller-home",
-        name: "SellerHome",
-        component: SellerHome,
-      },
-    ]
-  }
 ]
-
->>>>>>> 789cb8b72d86021cdc1a918fffa42b376e941903
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes,
-});
+})
 
 // router.beforeEach(async (to,from,next) => {
 //   if(to.name !== "Login") {

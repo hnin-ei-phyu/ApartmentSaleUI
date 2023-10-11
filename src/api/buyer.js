@@ -21,13 +21,13 @@ class Buyer {
         return result
     }
 
-    async loginBuyer(buyerObj, token = false) {
+    async buyerLogin(buyerObj, token) {
         let headers = {}
-        if(token) headers["x-access-token"] = token 
-        
-        let result = await axios.post(`${this.root}/login-buyer`,buyerObj, {headers})
-        console.log(result)
-        
+        if (token) headers["x-access-token"] = token
+
+        console.log("API Route")
+        let result = await axios.post(this.root + "/login-buyer", buyerObj, { headers })
+        return result
     }
 
     async getInfo(token = false) {

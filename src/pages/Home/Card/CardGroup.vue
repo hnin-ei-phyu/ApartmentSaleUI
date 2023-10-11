@@ -8,7 +8,6 @@
                 v-for="card in cards"
                 :key="card"
                 class="d-flex"
-                cols="6"
                 sm="3"
               >
                 <v-card>
@@ -33,20 +32,17 @@
                     <v-btn 
                       color="#ffff00"
                       link
-                      :href="'/detail'"
+                      :href="'detail'"
                     >
                       detail<v-icon>list</v-icon>
 
                     </v-btn>
   
-                    <v-btn icon x-large color="green">
-                      <v-icon>phone</v-icon>
-                    </v-btn>
   
                      <v-spacer></v-spacer>
   
                     <v-btn icon>
-                      <v-icon>mdi-bookmark</v-icon>
+                      <v-icon>mdi-heart</v-icon>
                     </v-btn>
   
                   </v-card-actions>
@@ -55,7 +51,7 @@
             </v-row>
       </v-container>
     <!--items card --> 
-  
+
   
     </div>
     
@@ -64,8 +60,9 @@
   
   
   <script>
+  import Merchandise from '../../../api/merchandise';
   export default {
-     name: 'Home',
+     name: 'CardGroup',
      data () {
         return {
          
@@ -85,9 +82,26 @@
           'mdi-linkedin',
           'mdi-instagram',
         ],
-        cards: null,
+        cards: [
+             {  src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',price: '120000 per month',date:'8/9/2023' },
+
+        ],
+        itemId : this.$route.params.itemId,
+
         }
       },
+      methods: {
+        loadItems: async function () {
+          this.items = [];
+          try {
+            let merchandise = new Merchandise(this.itemId)
+            let result = await merchandise.getInfo()
+            console.log(result.data)
+          } catch (error) {
+            console.log(error);
+          }
+        } 
+      }
     }
   
   
