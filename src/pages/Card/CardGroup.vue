@@ -32,7 +32,7 @@
                     <v-btn 
                       color="#ffff00"
                       link
-                      :href="'detail'"
+                      :href="'card-detail'"
                     >
                       detail<v-icon>list</v-icon>
 
@@ -60,34 +60,14 @@
   
   
   <script>
-  import Merchandise from '../../../api/merchandise';
+  import Merchandise from '../../api/merchandise'
   export default {
      name: 'CardGroup',
      data () {
         return {
-         
-          slides: [
-            {
-              src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg',
-            },
-            {
-              src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg',
-            },
+          cards: [
+          { src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',roomType: 'Family room',location: 'Insein Township',title: 'Apartment',price: '120000 per month',date:'8/9/2023'},
           ],
-          
-          items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-          icons: [
-          'mdi-facebook',
-          'mdi-twitter',
-          'mdi-linkedin',
-          'mdi-instagram',
-        ],
-        cards: [
-             {  src: 'https://cdn.vuetifyjs.com/images/cards/house.jpg',price: '120000 per month',date:'8/9/2023' },
-
-        ],
-        itemId : this.$route.params.itemId,
-
         }
       },
       methods: {

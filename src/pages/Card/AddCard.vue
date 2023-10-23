@@ -73,82 +73,81 @@
                   </v-btn>
                 </v-card-title>
                 <v-divider></v-divider>
-                <v-card-text class="mt-3 text-center">
-                  <v-row>
-                      <v-col
-                      class="d-flex"
-                      cols="6"
-                      sm="6"
-                      >
-                      <v-select
-                        :items="items"
-                        label="Item"
-                        v-model="item"
-                        outlined
-                      ></v-select>
-                    </v-col>
+                  <form enctype="multipart/form-data">
+                    <v-card-text class="mt-3 text-center">
+                      <v-row>
+                          <v-col
+                          class="d-flex"
+                          cols="6"
+                          sm="6"
+                          >
+                          <v-select
+                            :items="items"
+                            label="Item"
+                            v-model="item"
+                            outlined
+                          ></v-select>
+                        </v-col>
 
-                    <v-col cols="12" sm="6">
-                      <v-text-field
-                        filled
-                        outlined
-                        background-color="#fff"
-                        label="Price"
-                        color="primary darken-3"
-                        v-model="price"
-                      >
-                      </v-text-field>
-                    </v-col>
-                    <v-col cols="12" sm="6">
-                      <v-text-field
-                        filled
-                        outlined
-                        background-color="#fff"
-                        label="Location"
-                        color="primary darken-3"
-                        v-model="location"
-                      >
-                      </v-text-field>
-                    </v-col>
+                        <v-col cols="12" sm="6">
+                          <v-text-field
+                            filled
+                            outlined
+                            background-color="#fff"
+                            label="Price"
+                            color="primary darken-3"
+                            v-model="price"
+                          >
+                          </v-text-field>
+                        </v-col>
+                        <v-col cols="12" sm="6">
+                          <v-text-field
+                            filled
+                            outlined
+                            background-color="#fff"
+                            label="Location"
+                            color="primary darken-3"
+                            v-model="location"
+                          >
+                          </v-text-field>
+                        </v-col>
 
-                    
-                    <v-col cols="12" sm="6">
-                      <v-text-field
-                        filled
-                        outlined
-                        background-color="#fff"
-                        label="Description"
-                        color="primary darken-3"
-                        v-model="description"
-                      >
-                      </v-text-field>
-                    </v-col>
+                        
+                        <v-col cols="12" sm="6">
+                          <v-text-field
+                            filled
+                            outlined
+                            background-color="#fff"
+                            label="Description"
+                            color="primary darken-3"
+                            v-model="description"
+                          >
+                          </v-text-field>
+                        </v-col>
 
-                    <v-col cols="12" sm="6">
-                      <v-text-field
-                        filled
-                        outlined
-                        background-color="#fff"
-                        label="Detail"
-                        color="primary darken-3"
-                        v-model="detail"
-                      >
-                      </v-text-field>
-                    </v-col>
+                        <v-col cols="12" sm="6">
+                          <v-text-field
+                            filled
+                            outlined
+                            background-color="#fff"
+                            label="Detail"
+                            color="primary darken-3"
+                            v-model="detail"
+                          >
+                          </v-text-field>
+                        </v-col>
 
-                    <v-col cols="12" sm="6">
-                      <v-text-field
-                        filled
-                        outlined
-                        background-color="#fff"
-                        label="Photo"
-                        color="primary darken-3"
-                        v-model="photo"
-                      >
-                      </v-text-field>
-                    </v-col>
-                  </v-row>
-                </v-card-text>
+                        <v-col cols="12" sm="6">
+                           <v-card style="height: 50px;">
+                            <div class="field">
+                              <h2><label for="file" class="lable">Upload photo</label>
+                              <input type="file" class="mx-4" style="height: 100px;"></h2>
+                          </div>
+                           </v-card>
+                        </v-col>
+                      </v-row>
+                    </v-card-text>
+                </form>
               </v-card>
             </v-col>
           </v-row>
@@ -198,7 +197,7 @@
   
   
   <script>
-  import Merchandise from "../../../api/merchandise"
+  import Merchandise from "../../api/merchandise"
   export default {
      name: 'AddCard',
      data () {

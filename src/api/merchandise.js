@@ -69,7 +69,7 @@ class Merchandise {
         return result
     }
 
-    async deleteAdmin(token = false) {
+    async deleteItem(token = false) {
         let headers = {}
         if (token) headers["x-access-token"] = token
 
@@ -77,6 +77,13 @@ class Merchandise {
         return result
     }
 
+    async paginate(token = false) {
+        let headers = {}
+        if(token) headers["x-access-token"] = token
+
+        let result = await axios.get(`${this.root}/get-paginate`, { headers })
+        return result
+    }
 
 }
 

@@ -8,11 +8,10 @@ import SellerLogin from "../pages/Auth/SellerLogin"
 import SellerRegister from "../pages/Auth/SellerRegister"
 import Home from "../pages/Home/Home"
 import UserHome from "../pages/Home/UserHome"
-import Detail from "../pages/Home/Card/CardDetail"
 import SellerHome from "../pages/Home/SellerHome"
-import CardGroup from "../pages/Home/Card/CardGroup"
-import CardDetail from "../pages/Home/Card/CardDetail"
-import AddCard from "../pages/Home/Card/AddCard"
+import CardGroup from "../pages/Card/CardGroup"
+import CardDetail from "../pages/Card/CardDetail"
+import AddCard from "../pages/Card/AddCard"
 // import AddCard from "../pages/Home/Card/AddCard"
 
 
@@ -61,12 +60,6 @@ const routes = [
             path : "/seller-register",
             name : "Seller Register",
             component : SellerRegister,
-          },
-         
-          {
-            path : "/detail",
-            name : "detail",
-            component : Detail,
           },
           {
             path: "/user-home",
